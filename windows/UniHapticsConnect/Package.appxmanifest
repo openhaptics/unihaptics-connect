@@ -7,11 +7,11 @@
   IgnorableNamespaces="uap mp">
 
   <Identity
-    Name="b054e858-51a8-4ae9-9e81-58af6952c523"
+    Name="86e495ea-be6f-4cf2-99ed-92b0bee00351"
     Publisher="CN=leon0399"
     Version="1.0.0.0" />
 
-  <mp:PhoneIdentity PhoneProductId="b054e858-51a8-4ae9-9e81-58af6952c523" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
+  <mp:PhoneIdentity PhoneProductId="86e495ea-be6f-4cf2-99ed-92b0bee00351" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
     <DisplayName>UniHapticsConnect</DisplayName>
