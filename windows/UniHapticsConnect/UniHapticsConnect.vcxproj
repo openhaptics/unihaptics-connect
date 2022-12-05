@@ -6,9 +6,9 @@
     <CppWinRTOptimized>true</CppWinRTOptimized>
     <CppWinRTRootNamespaceAutoMerge>true</CppWinRTRootNamespaceAutoMerge>
     <MinimalCoreWin>true</MinimalCoreWin>
-    <ProjectGuid>{9e3aee41-c39f-4757-a353-01e0029fe106}</ProjectGuid>
-    <ProjectName>ohc</ProjectName>
-    <RootNamespace>ohc</RootNamespace>
+    <ProjectGuid>{0c3c8aab-bf44-44c8-9f19-5b7255b268c8}</ProjectGuid>
+    <ProjectName>UniHapticsConnect</ProjectName>
+    <RootNamespace>UniHapticsConnect</RootNamespace>
     <DefaultLanguage>en-US</DefaultLanguage>
     <MinimumVisualStudioVersion>16.0</MinimumVisualStudioVersion>
     <AppContainerApplication>true</AppContainerApplication>

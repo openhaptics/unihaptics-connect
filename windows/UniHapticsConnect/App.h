@@ -6,7 +6,7 @@
 
 namespace activation = winrt::Windows::ApplicationModel::Activation;
 
-namespace winrt::ohc::implementation
+namespace winrt::UniHapticsConnect::implementation
 {
     struct App : AppT<App>
     {
@@ -18,4 +18,4 @@ namespace winrt::ohc::implementation
       private:
         using super = AppT<App>;
     };
-} // namespace winrt::ohc::implementation
+} // namespace winrt::UniHapticsConnect::implementation

@@ -9,7 +9,7 @@
 using namespace winrt;
 using namespace xaml;
 
-namespace winrt::ohc::implementation
+namespace winrt::UniHapticsConnect::implementation
 {
     MainPage::MainPage()
     {
