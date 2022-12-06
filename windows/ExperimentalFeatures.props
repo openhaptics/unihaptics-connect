@@ -9,6 +9,8 @@
   -->
 
   <PropertyGroup Label="Microsoft.ReactNative Experimental Features">
+    <WinUI2xVersion>2.6.0</WinUI2xVersion>
+
     <!--
       Enables default usage of Hermes.
       
