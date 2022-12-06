@@ -5,8 +5,30 @@
     xmlns:local="using:UniHapticsConnect"
     xmlns:react="using:Microsoft.ReactNative"
     xmlns:muxc="using:Microsoft.UI.Xaml.Controls"
+    xmlns:muxm="using:Microsoft.UI.Xaml.Media"
     RequestedTheme="Light">
     <Application.Resources>
-        <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
+
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <XamlControlsResources xmlns="using:Microsoft.UI.Xaml.Controls" />
+                <ResourceDictionary>
+                    <ResourceDictionary.ThemeDictionaries>
+                        <ResourceDictionary x:Key="Default">
+                            <muxm:AcrylicBrush 
+                                x:Key="ApplicationPageBackgroundThemeBrush"
+                                BackgroundSource="HostBackdrop"
+                            />
+                        </ResourceDictionary>
+                        <ResourceDictionary x:Key="HighContrast">
+                            <!-- Always include a "HighContrast" dictionary when you override
+                                 theme resources. This empty dictionary ensures that the 
+                                 default high contrast resources are used when the user
+                                 turns on high contrast mode. -->
+                        </ResourceDictionary>
+                    </ResourceDictionary.ThemeDictionaries>
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </react:ReactApplication>

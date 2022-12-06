@@ -20,6 +20,15 @@
         "resolved": "2.6.0",
         "contentHash": "nbFE/0z5j0MOABTv6oH+lPFkSUhDFEN/RYmDcyr3eAHMoM+1sHR9YodkExozEqVKpVptLlGWhpCaKxf8tz8YBw=="
       },
+      "SimpleInjector": {
+        "type": "Direct",
+        "requested": "[5.4.1, )",
+        "resolved": "5.4.1",
+        "contentHash": "L7s/snITatVAFz3dKM0+YVO0XApEj+ugCstDhq9eQLi1UYnKFyoNW6RtHkYfv5ue/UVrbS3l6ivTKIUO3FcRRg==",
+        "dependencies": {
+          "System.ComponentModel": "4.0.1"
+        }
+      },
       "Microsoft.Net.Native.Compiler": {
         "type": "Transitive",
         "resolved": "2.2.7-rel-27913-00",
@@ -45,6 +54,11 @@
         "type": "Transitive",
         "resolved": "2.1.0",
         "contentHash": "GmkKfoyerqmsHMn7OZj0AKpcBabD+GaafqphvX2Mw406IwiJRy1pKcKqdCfKJfYmkRyJ6+e+RaUylgdJoDa1jQ=="
+      },
+      "Microsoft.NETCore.Targets": {
+        "type": "Transitive",
+        "resolved": "1.0.1",
+        "contentHash": "rkn+fKobF/cbWfnnfBOQHKVKIOpxMZBvlSHkqDWgBpwGDcLRduvs3D9OLGeV6GWGvVwNlVi2CBbTjuPmtHvyNw=="
       },
       "NETStandard.Library": {
         "type": "Transitive",
@@ -121,6 +135,23 @@
         "resolved": "2.2.9",
         "contentHash": "qF6RRZKaflI+LR1YODNyWYjq5YoX8IJ2wx5y8O+AW2xO+1t/Q6Mm+jQ38zJbWnmXbrcOqUYofn7Y3/KC6lTLBQ=="
       },
+      "System.ComponentModel": {
+        "type": "Transitive",
+        "resolved": "4.0.1",
+        "contentHash": "oBZFnm7seFiVfugsIyOvQCWobNZs7FzqDV/B7tx20Ep/l3UUFCPDkdTnCNaJZTU27zjeODmy2C/cP60u3D4c9w==",
+        "dependencies": {
+          "System.Runtime": "4.1.0"
+        }
+      },
+      "System.Runtime": {
+        "type": "Transitive",
+        "resolved": "4.1.0",
+        "contentHash": "SwXraLtIWEZwfE/jOT+WFtP/tsX2KhIdgRQt330CQckx/pbRk7e/Aigak2hFjgdkRmdmVXz6lwkDXcdtj913Bg==",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.0.1",
+          "Microsoft.NETCore.Targets": "1.0.1"
+        }
+      },
       "common": {
         "type": "Project"
       },
@@ -170,10 +201,43 @@
           "runtime.win10-arm.Microsoft.NETCore.UniversalWindowsPlatform": "6.2.9"
         }
       },
+      "runtime.any.System.Runtime": {
+        "type": "Transitive",
+        "resolved": "4.1.0",
+        "contentHash": "0QVLwEGXROl0Trt2XosEjly9uqXcjHKStoZyZG9twJYFZJqq2JJXcBMXl/fnyQAgYEEODV8lUsU+t7NCCY0nUQ==",
+        "dependencies": {
+          "System.Private.Uri": "4.0.1"
+        }
+      },
       "runtime.win10-arm.Microsoft.NETCore.UniversalWindowsPlatform": {
         "type": "Transitive",
         "resolved": "6.2.9",
         "contentHash": "/q9U+SqJTVrocU7CHFd1D4ac2jqPc4U8kPy8F147Li3XGf0Ce9v6UKJqf7nskR+XgVi3IVfUJUcjWLVskG5ZKw=="
+      },
+      "runtime.win7.System.Private.Uri": {
+        "type": "Transitive",
+        "resolved": "4.0.1",
+        "contentHash": "LPOuwNel9nJ+G751J/yb64zkodFzVUwYYukQ8vysjiHRBrnvsZOhIxvqKhG6od1szrBNkl8pw8VGvvcfQ/2VOA=="
+      },
+      "System.Private.Uri": {
+        "type": "Transitive",
+        "resolved": "4.0.1",
+        "contentHash": "OltceAn9yyNf9LZIqvf80DhdRH55iVu1fxowdR79018w1CWIRNojUZBStsiRHvADeKI5pXcM9EftOFikBQh5AA==",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.0.1",
+          "Microsoft.NETCore.Targets": "1.0.1",
+          "runtime.win7.System.Private.Uri": "4.0.1"
+        }
+      },
+      "System.Runtime": {
+        "type": "Transitive",
+        "resolved": "4.1.0",
+        "contentHash": "SwXraLtIWEZwfE/jOT+WFtP/tsX2KhIdgRQt330CQckx/pbRk7e/Aigak2hFjgdkRmdmVXz6lwkDXcdtj913Bg==",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.0.1",
+          "Microsoft.NETCore.Targets": "1.0.1",
+          "runtime.any.System.Runtime": "4.1.0"
+        }
       }
     },
     "UAP,Version=v10.0.16299/win10-arm-aot": {
@@ -190,10 +254,43 @@
           "runtime.win10-arm-aot.Microsoft.NETCore.UniversalWindowsPlatform": "6.2.9"
         }
       },
+      "runtime.aot.System.Runtime": {
+        "type": "Transitive",
+        "resolved": "4.0.20",
+        "contentHash": "ax423Smc+2Bcm8Go70iwj30hpjUIuahVtBAqlGXzhOoRwRR4vlEN3OGp8qTecWki3ZhGrbOXy+A1U89V3DzG/w==",
+        "dependencies": {
+          "System.Private.Uri": "4.0.1"
+        }
+      },
       "runtime.win10-arm-aot.Microsoft.NETCore.UniversalWindowsPlatform": {
         "type": "Transitive",
         "resolved": "6.2.9",
         "contentHash": "tN7AmnRPUuu29nh9ulL/UGMdzayAe/AQNhM7+fQNKuT4jUlxc61Ilf2djKNJ5MvK8wY69KH0Iz9Yy5+95rB+DQ=="
+      },
+      "runtime.win7.System.Private.Uri": {
+        "type": "Transitive",
+        "resolved": "4.0.1",
+        "contentHash": "LPOuwNel9nJ+G751J/yb64zkodFzVUwYYukQ8vysjiHRBrnvsZOhIxvqKhG6od1szrBNkl8pw8VGvvcfQ/2VOA=="
+      },
+      "System.Private.Uri": {
+        "type": "Transitive",
+        "resolved": "4.0.1",
+        "contentHash": "OltceAn9yyNf9LZIqvf80DhdRH55iVu1fxowdR79018w1CWIRNojUZBStsiRHvADeKI5pXcM9EftOFikBQh5AA==",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.0.1",
+          "Microsoft.NETCore.Targets": "1.0.1",
+          "runtime.win7.System.Private.Uri": "4.0.1"
+        }
+      },
+      "System.Runtime": {
+        "type": "Transitive",
+        "resolved": "4.1.0",
+        "contentHash": "SwXraLtIWEZwfE/jOT+WFtP/tsX2KhIdgRQt330CQckx/pbRk7e/Aigak2hFjgdkRmdmVXz6lwkDXcdtj913Bg==",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.0.1",
+          "Microsoft.NETCore.Targets": "1.0.1",
+          "runtime.aot.System.Runtime": "4.0.20"
+        }
       }
     },
     "UAP,Version=v10.0.16299/win10-arm64-aot": {
@@ -210,10 +307,43 @@
           "runtime.win10-arm64-aot.Microsoft.NETCore.UniversalWindowsPlatform": "6.2.9"
         }
       },
+      "runtime.aot.System.Runtime": {
+        "type": "Transitive",
+        "resolved": "4.0.20",
+        "contentHash": "ax423Smc+2Bcm8Go70iwj30hpjUIuahVtBAqlGXzhOoRwRR4vlEN3OGp8qTecWki3ZhGrbOXy+A1U89V3DzG/w==",
+        "dependencies": {
+          "System.Private.Uri": "4.0.1"
+        }
+      },
       "runtime.win10-arm64-aot.Microsoft.NETCore.UniversalWindowsPlatform": {
         "type": "Transitive",
         "resolved": "6.2.9",
         "contentHash": "gupfeyxXmaOyqLps1gGLh4Lzh5Wee6iuKpgZ70l2nmoHtzqCdk9aK4i+03259M6X2r7BXoIjJJml0paXBQY1kw=="
+      },
+      "runtime.win7.System.Private.Uri": {
+        "type": "Transitive",
+        "resolved": "4.0.1",
+        "contentHash": "LPOuwNel9nJ+G751J/yb64zkodFzVUwYYukQ8vysjiHRBrnvsZOhIxvqKhG6od1szrBNkl8pw8VGvvcfQ/2VOA=="
+      },
+      "System.Private.Uri": {
+        "type": "Transitive",
+        "resolved": "4.0.1",
+        "contentHash": "OltceAn9yyNf9LZIqvf80DhdRH55iVu1fxowdR79018w1CWIRNojUZBStsiRHvADeKI5pXcM9EftOFikBQh5AA==",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.0.1",
+          "Microsoft.NETCore.Targets": "1.0.1",
+          "runtime.win7.System.Private.Uri": "4.0.1"
+        }
+      },
+      "System.Runtime": {
+        "type": "Transitive",
+        "resolved": "4.1.0",
+        "contentHash": "SwXraLtIWEZwfE/jOT+WFtP/tsX2KhIdgRQt330CQckx/pbRk7e/Aigak2hFjgdkRmdmVXz6lwkDXcdtj913Bg==",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.0.1",
+          "Microsoft.NETCore.Targets": "1.0.1",
+          "runtime.aot.System.Runtime": "4.0.20"
+        }
       }
     },
     "UAP,Version=v10.0.16299/win10-x64": {
@@ -230,10 +360,43 @@
           "runtime.win10-x64.Microsoft.NETCore.UniversalWindowsPlatform": "6.2.9"
         }
       },
+      "runtime.any.System.Runtime": {
+        "type": "Transitive",
+        "resolved": "4.1.0",
+        "contentHash": "0QVLwEGXROl0Trt2XosEjly9uqXcjHKStoZyZG9twJYFZJqq2JJXcBMXl/fnyQAgYEEODV8lUsU+t7NCCY0nUQ==",
+        "dependencies": {
+          "System.Private.Uri": "4.0.1"
+        }
+      },
       "runtime.win10-x64.Microsoft.NETCore.UniversalWindowsPlatform": {
         "type": "Transitive",
         "resolved": "6.2.9",
         "contentHash": "JjnUToWq2LQfNKtiqld4YYkgUcC3tCQ0RvRKiut0B7AgS+Eo/HnI/viFiH4FoNG7pFvcWoKimLctj06IgJoiyA=="
+      },
+      "runtime.win7.System.Private.Uri": {
+        "type": "Transitive",
+        "resolved": "4.0.1",
+        "contentHash": "LPOuwNel9nJ+G751J/yb64zkodFzVUwYYukQ8vysjiHRBrnvsZOhIxvqKhG6od1szrBNkl8pw8VGvvcfQ/2VOA=="
+      },
+      "System.Private.Uri": {
+        "type": "Transitive",
+        "resolved": "4.0.1",
+        "contentHash": "OltceAn9yyNf9LZIqvf80DhdRH55iVu1fxowdR79018w1CWIRNojUZBStsiRHvADeKI5pXcM9EftOFikBQh5AA==",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.0.1",
+          "Microsoft.NETCore.Targets": "1.0.1",
+          "runtime.win7.System.Private.Uri": "4.0.1"
+        }
+      },
+      "System.Runtime": {
+        "type": "Transitive",
+        "resolved": "4.1.0",
+        "contentHash": "SwXraLtIWEZwfE/jOT+WFtP/tsX2KhIdgRQt330CQckx/pbRk7e/Aigak2hFjgdkRmdmVXz6lwkDXcdtj913Bg==",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.0.1",
+          "Microsoft.NETCore.Targets": "1.0.1",
+          "runtime.any.System.Runtime": "4.1.0"
+        }
       }
     },
     "UAP,Version=v10.0.16299/win10-x64-aot": {
@@ -250,10 +413,43 @@
           "runtime.win10-x64-aot.Microsoft.NETCore.UniversalWindowsPlatform": "6.2.9"
         }
       },
+      "runtime.aot.System.Runtime": {
+        "type": "Transitive",
+        "resolved": "4.0.20",
+        "contentHash": "ax423Smc+2Bcm8Go70iwj30hpjUIuahVtBAqlGXzhOoRwRR4vlEN3OGp8qTecWki3ZhGrbOXy+A1U89V3DzG/w==",
+        "dependencies": {
+          "System.Private.Uri": "4.0.1"
+        }
+      },
       "runtime.win10-x64-aot.Microsoft.NETCore.UniversalWindowsPlatform": {
         "type": "Transitive",
         "resolved": "6.2.9",
         "contentHash": "XTmgQZIB3JbzwVE0h+GN//VniFM4MmSWjxjtK7g5zypTwtpuj68oulxWqN5R3F19GaUzT+EFdfKXKEWI73/qwQ=="
+      },
+      "runtime.win7.System.Private.Uri": {
+        "type": "Transitive",
+        "resolved": "4.0.1",
+        "contentHash": "LPOuwNel9nJ+G751J/yb64zkodFzVUwYYukQ8vysjiHRBrnvsZOhIxvqKhG6od1szrBNkl8pw8VGvvcfQ/2VOA=="
+      },
+      "System.Private.Uri": {
+        "type": "Transitive",
+        "resolved": "4.0.1",
+        "contentHash": "OltceAn9yyNf9LZIqvf80DhdRH55iVu1fxowdR79018w1CWIRNojUZBStsiRHvADeKI5pXcM9EftOFikBQh5AA==",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.0.1",
+          "Microsoft.NETCore.Targets": "1.0.1",
+          "runtime.win7.System.Private.Uri": "4.0.1"
+        }
+      },
+      "System.Runtime": {
+        "type": "Transitive",
+        "resolved": "4.1.0",
+        "contentHash": "SwXraLtIWEZwfE/jOT+WFtP/tsX2KhIdgRQt330CQckx/pbRk7e/Aigak2hFjgdkRmdmVXz6lwkDXcdtj913Bg==",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.0.1",
+          "Microsoft.NETCore.Targets": "1.0.1",
+          "runtime.aot.System.Runtime": "4.0.20"
+        }
       }
     },
     "UAP,Version=v10.0.16299/win10-x86": {
@@ -270,10 +466,43 @@
           "runtime.win10-x86.Microsoft.NETCore.UniversalWindowsPlatform": "6.2.9"
         }
       },
+      "runtime.any.System.Runtime": {
+        "type": "Transitive",
+        "resolved": "4.1.0",
+        "contentHash": "0QVLwEGXROl0Trt2XosEjly9uqXcjHKStoZyZG9twJYFZJqq2JJXcBMXl/fnyQAgYEEODV8lUsU+t7NCCY0nUQ==",
+        "dependencies": {
+          "System.Private.Uri": "4.0.1"
+        }
+      },
       "runtime.win10-x86.Microsoft.NETCore.UniversalWindowsPlatform": {
         "type": "Transitive",
         "resolved": "6.2.9",
         "contentHash": "BckZHjaqBTSEtvzj0aliq3DQvLOT7C4ei4L8pCgcD3k/MZpECBg8kUsixDanwYtRot+jNXxc6LF5J87cyigGfA=="
+      },
+      "runtime.win7.System.Private.Uri": {
+        "type": "Transitive",
+        "resolved": "4.0.1",
+        "contentHash": "LPOuwNel9nJ+G751J/yb64zkodFzVUwYYukQ8vysjiHRBrnvsZOhIxvqKhG6od1szrBNkl8pw8VGvvcfQ/2VOA=="
+      },
+      "System.Private.Uri": {
+        "type": "Transitive",
+        "resolved": "4.0.1",
+        "contentHash": "OltceAn9yyNf9LZIqvf80DhdRH55iVu1fxowdR79018w1CWIRNojUZBStsiRHvADeKI5pXcM9EftOFikBQh5AA==",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.0.1",
+          "Microsoft.NETCore.Targets": "1.0.1",
+          "runtime.win7.System.Private.Uri": "4.0.1"
+        }
+      },
+      "System.Runtime": {
+        "type": "Transitive",
+        "resolved": "4.1.0",
+        "contentHash": "SwXraLtIWEZwfE/jOT+WFtP/tsX2KhIdgRQt330CQckx/pbRk7e/Aigak2hFjgdkRmdmVXz6lwkDXcdtj913Bg==",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.0.1",
+          "Microsoft.NETCore.Targets": "1.0.1",
+          "runtime.any.System.Runtime": "4.1.0"
+        }
       }
     },
     "UAP,Version=v10.0.16299/win10-x86-aot": {
@@ -290,10 +519,43 @@
           "runtime.win10-x86-aot.Microsoft.NETCore.UniversalWindowsPlatform": "6.2.9"
         }
       },
+      "runtime.aot.System.Runtime": {
+        "type": "Transitive",
+        "resolved": "4.0.20",
+        "contentHash": "ax423Smc+2Bcm8Go70iwj30hpjUIuahVtBAqlGXzhOoRwRR4vlEN3OGp8qTecWki3ZhGrbOXy+A1U89V3DzG/w==",
+        "dependencies": {
+          "System.Private.Uri": "4.0.1"
+        }
+      },
       "runtime.win10-x86-aot.Microsoft.NETCore.UniversalWindowsPlatform": {
         "type": "Transitive",
         "resolved": "6.2.9",
         "contentHash": "/FxhZW8KuY7aiRcC1Opk5+48Meg1PYj36LcLVuX6Ty+n4HpMf7xxvNvp0EzSLzW/Ibzqt+iaRWqfOZqiTFZG5g=="
+      },
+      "runtime.win7.System.Private.Uri": {
+        "type": "Transitive",
+        "resolved": "4.0.1",
+        "contentHash": "LPOuwNel9nJ+G751J/yb64zkodFzVUwYYukQ8vysjiHRBrnvsZOhIxvqKhG6od1szrBNkl8pw8VGvvcfQ/2VOA=="
+      },
+      "System.Private.Uri": {
+        "type": "Transitive",
+        "resolved": "4.0.1",
+        "contentHash": "OltceAn9yyNf9LZIqvf80DhdRH55iVu1fxowdR79018w1CWIRNojUZBStsiRHvADeKI5pXcM9EftOFikBQh5AA==",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.0.1",
+          "Microsoft.NETCore.Targets": "1.0.1",
+          "runtime.win7.System.Private.Uri": "4.0.1"
+        }
+      },
+      "System.Runtime": {
+        "type": "Transitive",
+        "resolved": "4.1.0",
+        "contentHash": "SwXraLtIWEZwfE/jOT+WFtP/tsX2KhIdgRQt330CQckx/pbRk7e/Aigak2hFjgdkRmdmVXz6lwkDXcdtj913Bg==",
+        "dependencies": {
+          "Microsoft.NETCore.Platforms": "1.0.1",
+          "Microsoft.NETCore.Targets": "1.0.1",
+          "runtime.aot.System.Runtime": "4.0.20"
+        }
       }
     }
   }

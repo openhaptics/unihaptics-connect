@@ -1,4 +1,6 @@
 using Microsoft.ReactNative;
+using System.Diagnostics;
+using System.Threading;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -39,6 +41,18 @@ namespace UniHapticsConnect
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
+            if (this.IsAlreadyRunning())
+            {
+                Process.GetCurrentProcess().Kill();
+            }
+
+#if DEBUG
+            if (Debugger.IsAttached)
+            {
+                // DebugSettings.EnableFrameRateCounter = true;
+            }
+#endif
+
             base.OnLaunched(e);
             var frame = (Frame)Window.Current.Content;
             frame.Navigate(typeof(MainPage), e.Arguments);
@@ -57,6 +71,13 @@ namespace UniHapticsConnect
                 var frame = (Frame)Window.Current.Content;
                 frame.Navigate(typeof(MainPage), null);
             }
+        }
+
+        private bool IsAlreadyRunning()
+        {
+            bool createdNew = false;
+            Mutex mutex = new Mutex(true, "UniHapticsConnect", out createdNew);
+            return !createdNew;
         }
     }
 }
