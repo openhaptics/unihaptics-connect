@@ -39,6 +39,7 @@ namespace UniHapticsConnect
 
             Microsoft.ReactNative.Managed.AutolinkedNativeModules.RegisterAutolinkedNativeModulePackages(PackageProviders); // Includes any autolinked modules
 
+            PackageProviders.Add(new Microsoft.ReactNative.Managed.ReactPackageProvider());
             PackageProviders.Add(new ReactPackageProvider());
 
             InitializeComponent();
@@ -66,8 +67,6 @@ namespace UniHapticsConnect
             base.OnLaunched(e);
             var frame = (Frame)Window.Current.Content;
             frame.Navigate(typeof(MainPage), e.Arguments);
-
-            var bleWatcher = App.GetService<Device.Watcher.BLEDeviceWatcherService>();
         }
 
         /// <summary>

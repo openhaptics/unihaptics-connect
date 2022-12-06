@@ -19,6 +19,14 @@
                                 x:Key="ApplicationPageBackgroundThemeBrush"
                                 BackgroundSource="HostBackdrop"
                             />
+                            <SolidColorBrush
+                                x:Key="NavigationViewContentBackground"
+                                Color="Transparent" 
+                            />
+                            <SolidColorBrush
+                                x:Key="NavigationViewContentGridBorderBrush"
+                                Color="Transparent" 
+                            />
                         </ResourceDictionary>
                         <ResourceDictionary x:Key="HighContrast">
                             <!-- Always include a "HighContrast" dictionary when you override

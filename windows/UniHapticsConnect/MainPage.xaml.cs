@@ -31,6 +31,8 @@ namespace UniHapticsConnect
         public MainPage()
         {
             this.InitializeComponent();
+            var app = Application.Current as App;
+            reactRootView.ReactNativeHost = app.Host;
         }
     }
 }
