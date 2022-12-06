@@ -4,17 +4,14 @@ using System.Threading;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using SimpleInjector;
 
 namespace UniHapticsConnect
 {
     sealed partial class App : ReactApplication
     {
-        private Container container;
-
         public static T GetService<T>() where T : class
         {            
-            if (!((App.Current as App).container.GetInstance<T>() is T service))
+            if (!(AppServices.Instance.ServiceProvider.GetService(typeof(T)) is T service))
             {
                 throw new System.ArgumentException($"{typeof(T)} needs to be registered in ConfigureServices within App.xaml.cs.");
             }
@@ -45,14 +42,6 @@ namespace UniHapticsConnect
             PackageProviders.Add(new ReactPackageProvider());
 
             InitializeComponent();
-
-            if (container == null)
-            {
-                container = new SimpleInjector.Container();
-            }
-
-            container.Options.ResolveUnregisteredConcreteTypes = false;
-            container.Verify();
         }
 
         /// <summary>
@@ -77,6 +66,8 @@ namespace UniHapticsConnect
             base.OnLaunched(e);
             var frame = (Frame)Window.Current.Content;
             frame.Navigate(typeof(MainPage), e.Arguments);
+
+            var bleWatcher = App.GetService<Device.Watcher.BLEDeviceWatcherService>();
         }
 
         /// <summary>
