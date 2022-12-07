@@ -1,5 +1,5 @@
 import React, {ComponentProps} from 'react';
-import {useWindowDimensions} from 'react-native';
+import {useWindowDimensions, View} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import HomeScreen from './components/HomeScreen';
 import winuiNavigatorFactory from './winuiNavigationViewNavigator';
@@ -8,9 +8,7 @@ import {FontIcon} from 'react-native-xaml';
 const NavigatioinView = winuiNavigatorFactory();
 
 const App = () => {
-  const {height, width} = useWindowDimensions();
-
-  type props = ComponentProps<typeof NavigatioinView.Screen>;
+  const {height} = useWindowDimensions();
 
   return (
     <NavigationContainer>

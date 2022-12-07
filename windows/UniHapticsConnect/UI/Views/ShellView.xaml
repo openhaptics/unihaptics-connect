@@ -30,7 +30,6 @@
             </muxc:NavigationView.Resources>
             <muxc:NavigationView.MenuItems>
                 <muxc:NavigationViewItem Content="Home" Icon="Home" Tag="HomeView" />
-                <muxc:NavigationViewItemSeparator/>
                 <muxc:NavigationViewItem Content="Devices" Tag="DevicesView" >
                     <muxc:NavigationViewItem.Icon>
                         <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE772;"/>
