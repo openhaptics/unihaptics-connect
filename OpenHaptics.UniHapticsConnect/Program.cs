@@ -1,7 +1,10 @@
 ﻿using CommunityToolkit.Extensions.Hosting;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Microsoft.UI.Dispatching;
 using Microsoft.Windows.AppLifecycle;
+using OpenHaptics.UniHapticsConnect.Services;
 using OpenHaptics.UniHapticsConnect.UI;
 using System;
 using System.Runtime.InteropServices;
@@ -21,26 +24,25 @@ namespace OpenHaptics.UniHapticsConnect
             {
                 var builder = new WindowsAppSdkHostBuilder<App>();
 
-                builder.ConfigureServices((_, collection) =>
+                builder.ConfigureServices((context, services) =>
                 {
-                    // If your main Window is named differently, change it here.
-                    collection.AddSingleton<MainWindow>();
+                    services.AddLogging(builder =>
+                    {
+#if DEBUG
+                        builder.AddDebug().SetMinimumLevel(LogLevel.Trace);
+#endif
+                    });
+
+                    services.AddSingleton<MainWindow>();
+                    services.AddHostedService<BLEDeviceWatcherService>();
                 });
 
                 var app = builder.Build();
 
                 return app.StartAsync();
-
-                // Microsoft.UI.Xaml.Application.Start((p) =>
-                // {
-                //     var context = new DispatcherQueueSynchronizationContext(
-                //         DispatcherQueue.GetForCurrentThread());
-                //     SynchronizationContext.SetSynchronizationContext(context);
-                //     new App();
-                // });
             }
 
-            return Task.Run(() => { });
+            return Task.CompletedTask;
         }
 
         private static bool DecideRedirection()
