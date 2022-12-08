@@ -1,4 +1,6 @@
-﻿using Microsoft.UI.Composition.SystemBackdrops;
+﻿using CommunityToolkit.Extensions.Hosting;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.UI.Composition.SystemBackdrops;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -26,7 +28,7 @@ namespace OpenHaptics.UniHapticsConnect
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
     /// </summary>
-    public partial class App : Application
+    public partial class App : CancelableApplication
     {
         private MainWindow m_window;
 
@@ -58,7 +60,7 @@ namespace OpenHaptics.UniHapticsConnect
 
         protected void EnsureWindow(string launchParameters)
         {
-            m_window = new MainWindow();
+            m_window = Services.GetRequiredService<MainWindow>();
             m_window.Activate();
         }
     }

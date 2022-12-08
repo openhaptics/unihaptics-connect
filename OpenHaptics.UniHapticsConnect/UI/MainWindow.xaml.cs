@@ -30,8 +30,6 @@ namespace OpenHaptics.UniHapticsConnect.UI
     /// </summary>
     public sealed partial class MainWindow : Window
     {
-        AppWindow m_appWindow;
-
         WindowsSystemDispatcherQueueHelper m_wsdqHelper;
         MicaController m_backdropController;
         SystemBackdropConfiguration m_configurationSource;
@@ -51,14 +49,14 @@ namespace OpenHaptics.UniHapticsConnect.UI
             NavigationViewControl.SelectedItem = NavigationViewControl.MenuItems.OfType<NavigationViewItem>().First();
         }
 
-        #region Mica Blur
+        #region Mica/Acryllic Blur
 
         /**
          * Setup Acryllic blur
          * 
          * @see https://learn.microsoft.com/en-us/windows/apps/windows-app-sdk/system-backdrop-controller
          */
-        bool SetupBackdrop()
+        private bool SetupBackdrop()
         {
             if (MicaController.IsSupported())
             {
