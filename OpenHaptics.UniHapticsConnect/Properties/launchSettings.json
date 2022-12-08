@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "OpenHaptics.UniHapticsConnect (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "OpenHaptics.UniHapticsConnect (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}

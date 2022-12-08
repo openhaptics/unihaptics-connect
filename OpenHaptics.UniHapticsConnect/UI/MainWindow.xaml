@@ -1,0 +1,28 @@
+<Window
+    x:Class="OpenHaptics.UniHapticsConnect.UI.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:OpenHaptics.UniHapticsConnect.UI.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid x:Name="RootGrid">
+        <NavigationView
+            x:Name="NavigationViewControl"
+            PaneDisplayMode="Left"
+            IsTitleBarAutoPaddingEnabled="False"
+            BackRequested="NavigationViewControl_BackRequested">
+            <NavigationView.MenuItems>
+                <NavigationViewItem Icon="Home" Content="Home" Tag="OpenHaptics.UniHapticsConnect.UI.Views.HomePage" />
+                <NavigationViewItem Content="Devices" Tag="OpenHaptics.UniHapticsConnect.UI.Views.DevicesPage">
+                    <NavigationViewItem.Icon>
+                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE772;"/>
+                    </NavigationViewItem.Icon>
+                </NavigationViewItem>
+            </NavigationView.MenuItems>
+
+            <Frame x:Name="ContentFrame" />
+        </NavigationView>
+    </Grid>
+</Window>
