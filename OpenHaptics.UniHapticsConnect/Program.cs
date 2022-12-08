@@ -4,6 +4,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.UI.Dispatching;
 using Microsoft.Windows.AppLifecycle;
+using OpenHaptics.UniHapticsConnect.Devices;
 using OpenHaptics.UniHapticsConnect.Services;
 using OpenHaptics.UniHapticsConnect.UI;
 using System;
@@ -34,6 +35,10 @@ namespace OpenHaptics.UniHapticsConnect
                     });
 
                     services.AddSingleton<MainWindow>();
+
+                    services.AddSingleton<DeviceManager>();
+
+                    // See: https://learn.microsoft.com/en-us/dotnet/core/extensions/generic-host
                     services.AddHostedService<BLEDeviceWatcherService>();
                 });
 

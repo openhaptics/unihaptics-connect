@@ -1,8 +1,10 @@
 ﻿using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using OpenHaptics.UniHapticsConnect.Devices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -13,12 +15,16 @@ namespace OpenHaptics.UniHapticsConnect.Services
     internal class BLEDeviceWatcherService : IHostedService
     {
         private readonly ILogger _logger;
+        private readonly DeviceManager _deviceManager;
 
         private readonly BluetoothLEAdvertisementWatcher _bleWatcher;
 
-        public BLEDeviceWatcherService(ILogger<BLEDeviceWatcherService> logger) 
-        {
+        public BLEDeviceWatcherService(
+            ILogger<BLEDeviceWatcherService> logger,
+            DeviceManager deviceManager
+        ) {
             _logger = logger;
+           _deviceManager = deviceManager;
 
             try
             {
@@ -66,9 +72,27 @@ namespace OpenHaptics.UniHapticsConnect.Services
                 return;
             }
 
+            var macAddress = string.Join(":", BitConverter.GetBytes(eventArgs.BluetoothAddress).Reverse().Select(b => b.ToString("X2"))).Substring(6);
             var advertisement = eventArgs.Advertisement;
+            var appearance = getAppearance(advertisement);
+            var appearanceHex = appearance != null ? ("0x" + appearance?.ToString("X")) : null;
 
-            _logger.LogTrace("Received: " + advertisement.LocalName, advertisement);
+            _logger.LogInformation(string.Format("{0} ({1}), appearance: {2}", macAddress, advertisement.LocalName, appearanceHex));
+            var deviceCandidate = DeviceCandidate.BLE(macAddress, advertisement.LocalName);
+        }
+
+        private int? getAppearance(BluetoothLEAdvertisement advertisement)
+        {
+            var dataSections = advertisement.DataSections;
+
+            if (dataSections == null || dataSections.Count <= 0)
+                return null;
+
+            byte[] array = dataSections[0].Data.ToArray();
+            if (array.Length != 2)
+                return null;
+
+            return array[0] + array[1] * 256;
         }
     }
 }
