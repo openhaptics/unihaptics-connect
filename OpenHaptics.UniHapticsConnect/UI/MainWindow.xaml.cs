@@ -19,6 +19,7 @@ using Windows.Foundation;
 using Windows.Foundation.Collections;
 using WinRT;
 using WinRT.Interop;
+using static System.Net.Mime.MediaTypeNames;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -119,13 +120,50 @@ namespace OpenHaptics.UniHapticsConnect.UI
                 case ElementTheme.Light: m_configurationSource.Theme = SystemBackdropTheme.Light; break;
                 case ElementTheme.Default: m_configurationSource.Theme = SystemBackdropTheme.Default; break;
             }
-        } 
+        }
 
         #endregion
 
+        private void NavigationViewControl_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
+        {
+            if (args.IsSettingsInvoked == true)
+            {
+                // TODO: open settings
+                return;
+            }
+
+            if (args.InvokedItemContainer != null && (args.InvokedItemContainer.Tag != null))
+            {
+                Type newPage = Type.GetType(args.InvokedItemContainer.Tag.ToString());
+
+                var prevPage = ContentFrame.CurrentSourcePageType;
+                if (!(newPage is null) && !Type.Equals(prevPage, newPage))
+                {
+                    ContentFrame.Navigate(newPage, null, args.RecommendedNavigationTransitionInfo);
+                }
+            }
+        }
+
         private void NavigationViewControl_BackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
         {
-            if (ContentFrame.CanGoBack) ContentFrame.GoBack();
+            TryGoBack();
+        }
+
+        private void ContentFrame_Navigated(object sender, NavigationEventArgs e)
+        {
+            NavigationViewControl.IsBackEnabled = ContentFrame.CanGoBack;
+        }
+
+        private bool TryGoBack()
+        {
+            if (!ContentFrame.CanGoBack)
+            {
+                return false;
+            }
+
+            ContentFrame.GoBack();
+
+            return true;
         }
     }
 }

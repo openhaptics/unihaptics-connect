@@ -12,6 +12,7 @@
             x:Name="NavigationViewControl"
             PaneDisplayMode="Left"
             IsTitleBarAutoPaddingEnabled="False"
+            ItemInvoked="NavigationViewControl_ItemInvoked"
             BackRequested="NavigationViewControl_BackRequested">
             <NavigationView.MenuItems>
                 <NavigationViewItem Icon="Home" Content="Home" Tag="OpenHaptics.UniHapticsConnect.UI.Views.HomePage" />
@@ -22,7 +23,7 @@
                 </NavigationViewItem>
             </NavigationView.MenuItems>
 
-            <Frame x:Name="ContentFrame" />
+            <Frame x:Name="ContentFrame" Navigated="ContentFrame_Navigated" />
         </NavigationView>
     </Grid>
 </Window>
