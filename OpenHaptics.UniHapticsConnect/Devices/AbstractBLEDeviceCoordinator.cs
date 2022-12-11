@@ -10,7 +10,7 @@ namespace OpenHaptics.UniHapticsConnect.Devices
     {
         public abstract bool isSupportedDevice(DeviceCandidate candidate);
 
-        public abstract string getDeviceType();
+        public abstract string DeviceType();
 
         public int getBatteryCount() => 1;
     }

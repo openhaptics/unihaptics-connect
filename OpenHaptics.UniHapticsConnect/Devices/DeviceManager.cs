@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using OpenHaptics.UniHapticsConnect.Devices.Apple;
 using OpenHaptics.UniHapticsConnect.Devices.BHaptics;
+using OpenHaptics.UniHapticsConnect.Devices.Meta;
 using OpenHaptics.UniHapticsConnect.Model;
 using System;
 using System.Collections.Generic;
@@ -27,6 +28,8 @@ namespace OpenHaptics.UniHapticsConnect.Devices
                 // I made it here just for testing to distinguish multiple deevices at the same time
                 new AirPodsGen1Coordinator(),
                 new AirPodsProGen1Coordinator(),
+
+                new MetaQuest2Coordinator(),
             };
         }
 
@@ -36,7 +39,7 @@ namespace OpenHaptics.UniHapticsConnect.Devices
             {
                 if (coordinator.isSupportedDevice(deviceCandidate))
                 {
-                    return coordinator.getDeviceType();
+                    return coordinator.DeviceType();
                 }
             }
 

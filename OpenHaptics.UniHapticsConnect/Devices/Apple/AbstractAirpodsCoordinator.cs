@@ -36,13 +36,13 @@ namespace OpenHaptics.UniHapticsConnect.Devices.Apple
                     return false;
 
                 var DeviceModel = (ushort)((byteArray[3] << 8) | byteArray[4]);
-                if (DeviceModel == getDeviceModelValue())
+                if (DeviceModel == DeviceModelValue())
                     return true;
             }
 
             return false;
         }
 
-        protected abstract ushort getDeviceModelValue();
+        protected abstract ushort DeviceModelValue();
     }
 }
