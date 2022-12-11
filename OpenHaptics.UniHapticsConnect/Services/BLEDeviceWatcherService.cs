@@ -23,8 +23,7 @@ namespace OpenHaptics.UniHapticsConnect.Services
             ILogger<BLEDeviceWatcherService> logger,
             DeviceManager deviceManager
         ) {
-            _logger = logger;
-           _deviceManager = deviceManager;
+            (_logger, _deviceManager) = (logger, deviceManager);
 
             try
             {
@@ -72,15 +71,19 @@ namespace OpenHaptics.UniHapticsConnect.Services
                 return;
             }
 
-            var macAddress = string.Join(":", BitConverter.GetBytes(eventArgs.BluetoothAddress).Reverse().Select(b => b.ToString("X2"))).Substring(6);
             var advertisement = eventArgs.Advertisement;
+            var macAddress = string.Join(":", BitConverter.GetBytes(eventArgs.BluetoothAddress).Reverse().Select(b => b.ToString("X2"))).Substring(6);
             var appearance = getAppearance(advertisement);
-            var appearanceHex = appearance != null ? ("0x" + appearance?.ToString("X")) : null;
 
-            _logger.LogInformation(string.Format("{0} ({1}), appearance: {2}", macAddress, advertisement.LocalName, appearanceHex));
+            var appearanceHex = appearance != null ? ("0x" + appearance?.ToString("X")) : null;
+            var logName = string.IsNullOrWhiteSpace(advertisement.LocalName) ? "<unknown>" : advertisement.LocalName;
+            _logger.LogDebug(string.Format("Found device: {0} ({1}), appearance: {2}", logName, macAddress, appearanceHex));
+
             var deviceCandidate = DeviceCandidate.BLE(macAddress, advertisement.LocalName);
+            _deviceManager.handleDeviceFound(deviceCandidate);
         }
 
+        // TODO: re-write this part
         private int? getAppearance(BluetoothLEAdvertisement advertisement)
         {
             var dataSections = advertisement.DataSections;

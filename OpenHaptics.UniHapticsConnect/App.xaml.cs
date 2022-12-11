@@ -10,6 +10,7 @@ using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using Microsoft.UI.Xaml.Shapes;
 using OpenHaptics.UniHapticsConnect.UI;
+using OpenHaptics.UniHapticsConnect.Services;
 using System;
 using System.Collections.Generic;
 using System.IO;

@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace OpenHaptics.UniHapticsConnect.Devices
+﻿namespace OpenHaptics.UniHapticsConnect.Devices
 {
     internal class DeviceCandidate
     {
-        public DeviceCandidate(string uid) { }
+        public string UID { get; }
+        public string DeviceName { get; }
 
-        public static DeviceCandidate BLE(string macAddress, string localName)
-        {
-            return new DeviceCandidate(macAddress);
-        }
+        public DeviceCandidate(string uid, string deviceName) => (UID, DeviceName) = (uid, deviceName);
+
+        public static DeviceCandidate BLE(string macAddress, string? localName) => new DeviceCandidate(macAddress, localName);
     }
 }
