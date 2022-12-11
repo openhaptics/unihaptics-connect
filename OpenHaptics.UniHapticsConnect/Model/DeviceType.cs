@@ -10,6 +10,9 @@ namespace OpenHaptics.UniHapticsConnect.Model
     {
         public static readonly string UNKNOWN = "unknown";
 
+        public static readonly string APPLE_AIRPODS_GEN1 = "AIRPODS";
+        public static readonly string APPLE_AIRPODS_PRO_GEN1 = "AIRPODS_PRO";
+
         public static readonly string BHAPTICS_TACTAL = "BHAPTICS_TACTAL";
         public static readonly string BHAPTICS_TACTSUIT_X16 = "BHAPTICS_TACTSUIT_X16";
     }

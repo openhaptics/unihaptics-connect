@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using OpenHaptics.UniHapticsConnect.Devices.Apple;
 using OpenHaptics.UniHapticsConnect.Devices.BHaptics;
 using OpenHaptics.UniHapticsConnect.Model;
 using System;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace OpenHaptics.UniHapticsConnect.Devices
 {
-    internal class DeviceManager
+    internal sealed class DeviceManager
     {
         private readonly ILogger<DeviceManager> _logger;
 
@@ -22,6 +23,10 @@ namespace OpenHaptics.UniHapticsConnect.Devices
             _coordinatorList = new List<IDeviceCoordinator>
             {
                 new BHapticsTactalCoordinator(),
+
+                // I made it here just for testing to distinguish multiple deevices at the same time
+                new AirPodsGen1Coordinator(),
+                new AirPodsProGen1Coordinator(),
             };
         }
 
@@ -47,7 +52,7 @@ namespace OpenHaptics.UniHapticsConnect.Devices
                 return false;
             }
 
-            _logger.LogDebug(string.Format("Recognized device: {0}", deviceType));
+            _logger.LogDebug(string.Format("Recognized device: {0} ({1})", deviceType, deviceCandidate.UID));
 
             return false;
         }

@@ -72,30 +72,17 @@ namespace OpenHaptics.UniHapticsConnect.Services
             }
 
             var advertisement = eventArgs.Advertisement;
-            var macAddress = string.Join(":", BitConverter.GetBytes(eventArgs.BluetoothAddress).Reverse().Select(b => b.ToString("X2"))).Substring(6);
-            var appearance = getAppearance(advertisement);
-
-            var appearanceHex = appearance != null ? ("0x" + appearance?.ToString("X")) : null;
-            var logName = string.IsNullOrWhiteSpace(advertisement.LocalName) ? "<unknown>" : advertisement.LocalName;
-            _logger.LogDebug(string.Format("Found device: {0} ({1}), appearance: {2}", logName, macAddress, appearanceHex));
-
-            var deviceCandidate = DeviceCandidate.BLE(macAddress, advertisement.LocalName);
-            _deviceManager.handleDeviceFound(deviceCandidate);
-        }
-
-        // TODO: re-write this part
-        private int? getAppearance(BluetoothLEAdvertisement advertisement)
-        {
+            var manufacturerData = advertisement.ManufacturerData;
             var dataSections = advertisement.DataSections;
+            var rssi = eventArgs.RawSignalStrengthInDBm;
 
-            if (dataSections == null || dataSections.Count <= 0)
-                return null;
+            var macAddress = string.Join(":", BitConverter.GetBytes(eventArgs.BluetoothAddress).Reverse().Select(b => b.ToString("X2"))).Substring(6);
+            var logName = string.IsNullOrWhiteSpace(advertisement.LocalName) ? "<unknown>" : advertisement.LocalName;
 
-            byte[] array = dataSections[0].Data.ToArray();
-            if (array.Length != 2)
-                return null;
+            _logger.LogDebug(string.Format("Found device: {0} ({1}), RSSI: {2}", logName, macAddress, rssi));
 
-            return array[0] + array[1] * 256;
+            var deviceCandidate = new BLEDeviceCandidate(macAddress, advertisement.LocalName, advertisement, rssi);
+            _deviceManager.handleDeviceFound(deviceCandidate);
         }
     }
 }

@@ -5,7 +5,9 @@ namespace OpenHaptics.UniHapticsConnect.Devices.BHaptics
 {
     internal class BHapticsTactalCoordinator : AbstractBHapticsCoordinator
     {
-        public override bool isSupportedDevice(DeviceCandidate candidate) => candidate.DeviceName.ToLower().StartsWith("tactal");
+        public override bool isSupportedDevice(DeviceCandidate candidate) => 
+            candidate.GetType() == typeof(BLEDeviceCandidate) && 
+            candidate.DeviceName.ToLower().StartsWith("tactal");
 
         public override string getDeviceType() => DeviceType.BHAPTICS_TACTAL;
     }
