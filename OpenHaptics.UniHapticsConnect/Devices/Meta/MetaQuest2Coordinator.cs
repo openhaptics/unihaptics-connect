@@ -1,4 +1,5 @@
 ﻿using OpenHaptics.UniHapticsConnect.Model;
+using System.Linq;
 using Windows.Storage.Streams;
 
 namespace OpenHaptics.UniHapticsConnect.Devices.Meta
@@ -13,17 +14,24 @@ namespace OpenHaptics.UniHapticsConnect.Devices.Meta
                 return false;
 
             var manufacturerData = (candidate as BLEDeviceCandidate).Advertisement.ManufacturerData;
-            if (manufacturerData == null)
+            if (manufacturerData == null) 
                 return false;
 
-            foreach(var data in manufacturerData)
+            var serviceData = (candidate as BLEDeviceCandidate).ServiceData();
+
+            if (!serviceData.ContainsKey(0xFEB8))
+                return false;
+
+            foreach (var data in manufacturerData)
             {
                 if (data.CompanyId != MetaConstants.META_OCULUS_MANUFACTURER_ID)
                     continue;
 
                 var byteArray = new byte[(int)data.Data.Length];
-                DataReader dataReader = DataReader.FromBuffer(data.Data);
-                dataReader.ReadBytes(byteArray);
+                using (DataReader dataReader = DataReader.FromBuffer(data.Data)) 
+                    dataReader.ReadBytes(byteArray);
+
+                // byteArray;
             }
 
             return false;

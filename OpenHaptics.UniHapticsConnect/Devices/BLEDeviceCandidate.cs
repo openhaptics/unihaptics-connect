@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -35,6 +36,27 @@ namespace OpenHaptics.UniHapticsConnect.Devices
             dataReader.ReadBytes(byteArray);
 
             return BitConverter.ToInt16(byteArray);
+        }
+
+        public Dictionary<ushort, short> ServiceData()
+        {
+            var dataSections = Advertisement.DataSections;
+           
+            var serviceData16Section = dataSections.FirstOrDefault(section => section.DataType == 0x16);
+            if (serviceData16Section == null)
+                return new Dictionary<ushort, short>();
+            
+            var serviceData16Bytes = new byte[(int)serviceData16Section.Data.Length];
+            using (DataReader dataReader = DataReader.FromBuffer(serviceData16Section.Data))
+                dataReader.ReadBytes(serviceData16Bytes);
+
+            var serviceUUID = (ushort) BitConverter.ToInt16(new byte[2] { serviceData16Bytes[0], serviceData16Bytes[1] });
+            var serviceValue = BitConverter.ToInt16(new byte[2] { serviceData16Bytes[2], serviceData16Bytes[3] });
+
+            return new Dictionary<ushort, short>
+            {
+                [serviceUUID] = serviceValue,
+            };
         }
     }
 }
