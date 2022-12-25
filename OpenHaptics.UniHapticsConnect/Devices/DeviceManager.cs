@@ -3,11 +3,8 @@ using OpenHaptics.UniHapticsConnect.Devices.Apple;
 using OpenHaptics.UniHapticsConnect.Devices.BHaptics;
 using OpenHaptics.UniHapticsConnect.Devices.Meta;
 using OpenHaptics.UniHapticsConnect.Model;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Collections.ObjectModel;
 
 namespace OpenHaptics.UniHapticsConnect.Devices
 {
@@ -16,6 +13,8 @@ namespace OpenHaptics.UniHapticsConnect.Devices
         private readonly ILogger<DeviceManager> _logger;
 
         private readonly List<IDeviceCoordinator> _coordinatorList;
+
+        public ObservableCollection<DeviceCandidate> Candidates { get; private set; } = new ObservableCollection<DeviceCandidate>();
 
         public DeviceManager(ILogger<DeviceManager> logger)
         {
@@ -33,7 +32,7 @@ namespace OpenHaptics.UniHapticsConnect.Devices
             };
         }
 
-        public string getSupportedDeviceType(DeviceCandidate deviceCandidate)
+        public string GuessDeviceType(DeviceCandidate deviceCandidate)
         {
             foreach (var coordinator in _coordinatorList)
             {
@@ -46,18 +45,31 @@ namespace OpenHaptics.UniHapticsConnect.Devices
             return DeviceType.UNKNOWN;
         }
 
-        public bool handleDeviceFound(DeviceCandidate deviceCandidate)
+        public bool HandleDeviceFound(DeviceCandidate deviceCandidate)
         {
-            var deviceType = getSupportedDeviceType(deviceCandidate);
+            var deviceType = GuessDeviceType(deviceCandidate);
 
             if (deviceType == DeviceType.UNKNOWN)
             {
                 return false;
             }
 
-            _logger.LogDebug(string.Format("Recognized device: {0} ({1})", deviceType, deviceCandidate.UID));
+            _logger.LogDebug(string.Format("Recognized device: {0} ({1})", deviceType, deviceCandidate));
 
             return false;
+        }
+
+        public DeviceCandidate FindDevice(string uid)
+        {
+            foreach (var candidate in Candidates)
+            {
+                if (candidate.UID == uid)
+                {
+                    return candidate;
+                }
+            }
+
+            return null;
         }
     }
 }

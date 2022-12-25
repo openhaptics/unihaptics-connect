@@ -77,12 +77,12 @@ namespace OpenHaptics.UniHapticsConnect.Services
             var rssi = eventArgs.RawSignalStrengthInDBm;
 
             var macAddress = string.Join(":", BitConverter.GetBytes(eventArgs.BluetoothAddress).Reverse().Select(b => b.ToString("X2"))).Substring(6);
-            var logName = string.IsNullOrWhiteSpace(advertisement.LocalName) ? "<unknown>" : advertisement.LocalName;
+            var logName = string.IsNullOrWhiteSpace(advertisement.LocalName) ? "<empty>" : advertisement.LocalName;
 
             _logger.LogDebug(string.Format("Found device: {0} ({1}), RSSI: {2}", logName, macAddress, rssi));
 
             var deviceCandidate = new BLEDeviceCandidate(macAddress, advertisement.LocalName, advertisement, rssi);
-            _deviceManager.handleDeviceFound(deviceCandidate);
+            _deviceManager.HandleDeviceFound(deviceCandidate);
         }
     }
 }

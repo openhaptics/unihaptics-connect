@@ -40,12 +40,17 @@ namespace OpenHaptics.UniHapticsConnect.Devices
 
         public Dictionary<ushort, short> ServiceData()
         {
-            var dataSections = Advertisement.DataSections;
-           
+            var dataSections = Advertisement?.DataSections;
+            if (dataSections == null || dataSections.Count <= 0)
+                return new Dictionary<ushort, short>();
+
             var serviceData16Section = dataSections.FirstOrDefault(section => section.DataType == 0x16);
             if (serviceData16Section == null)
                 return new Dictionary<ushort, short>();
-            
+
+            if (serviceData16Section.Data.Length < 4)
+                return new Dictionary<ushort, short>();
+
             var serviceData16Bytes = new byte[(int)serviceData16Section.Data.Length];
             using (DataReader dataReader = DataReader.FromBuffer(serviceData16Section.Data))
                 dataReader.ReadBytes(serviceData16Bytes);
@@ -57,6 +62,11 @@ namespace OpenHaptics.UniHapticsConnect.Devices
             {
                 [serviceUUID] = serviceValue,
             };
+        }
+
+        public override string ToString()
+        {
+            return string.Format("{0} (RSSI: {1})", base.ToString(), RSSI);
         }
     }
 }

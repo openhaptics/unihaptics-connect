@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace OpenHaptics.UniHapticsConnect.Devices.Apple
+﻿namespace OpenHaptics.UniHapticsConnect.Devices.Apple
 {
     // See: https://github.com/furiousMAC/continuity/blob/master/messages/proximity_pairing.md
     internal class AppleConstants

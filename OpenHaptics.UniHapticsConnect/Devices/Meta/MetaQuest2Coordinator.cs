@@ -19,7 +19,7 @@ namespace OpenHaptics.UniHapticsConnect.Devices.Meta
 
             var serviceData = (candidate as BLEDeviceCandidate).ServiceData();
 
-            if (!serviceData.ContainsKey(0xFEB8))
+            if (!serviceData.ContainsKey(MetaConstants.UUID_SERVICE_PACIFIC_SHORT))
                 return false;
 
             foreach (var data in manufacturerData)

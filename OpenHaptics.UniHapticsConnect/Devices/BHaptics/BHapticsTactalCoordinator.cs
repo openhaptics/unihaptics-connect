@@ -1,7 +1,4 @@
-﻿using OpenHaptics.UniHapticsConnect.Model;
-using System;
-
-namespace OpenHaptics.UniHapticsConnect.Devices.BHaptics
+﻿namespace OpenHaptics.UniHapticsConnect.Devices.BHaptics
 {
     internal class BHapticsTactalCoordinator : AbstractBHapticsCoordinator
     {
